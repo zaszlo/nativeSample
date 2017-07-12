@@ -8,7 +8,7 @@ import { setStatusBarColors, BackendService, LoginService } from "./shared";
 import { AppComponent } from "./app.component";
 
 import { LoginModule } from "./login/login.module";
-import { GroceriesModule } from "./groceries/groceries.module";
+import { BooksModule } from "./books/books.module";
 
 @NgModule({
     bootstrap: [
@@ -20,7 +20,7 @@ import { GroceriesModule } from "./groceries/groceries.module";
         NativeScriptRouterModule,
         NativeScriptRouterModule.forRoot(appRoutes),
         LoginModule,
-        GroceriesModule
+        BooksModule
     ],
     declarations: [
         AppComponent

@@ -1,22 +1,22 @@
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { groceriesRouting } from "./groceries.routing";
-import { GroceriesComponent } from "./groceries.component";
-import { GroceryListComponent } from "./grocery-list/grocery-list.component";
-import { ItemStatusPipe } from "./grocery-list/item-status.pipe";
+import { booksRouting } from "./books.routing";
+import { BooksComponent } from "./books.component";
+import { BookListComponent } from "./book-list/book-list.component";
+import { ItemStatusPipe } from "./book-list/item-status.pipe";
 
 @NgModule({
   imports: [
     NativeScriptModule,
     NativeScriptFormsModule,
-    groceriesRouting
+    booksRouting
   ],
   declarations: [
-    GroceriesComponent,
-    GroceryListComponent,
+    BooksComponent,
+    BookListComponent,
     ItemStatusPipe
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })
-export class GroceriesModule {}
+export class BooksModule {}

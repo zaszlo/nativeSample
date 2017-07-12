@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (getConnectionType() === connectionType.none) {
-      alert("Groceries requires an internet connection to log in.");
+      alert("Inventory requires an internet connection to log in.");
       return;
     }
     console.log("Logging in with " + this.user.username + " & " + this.user.passw)
@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
 
   signUp() {
     if (getConnectionType() === connectionType.none) {
-      alert("Groceries requires an internet connection to register.");
+      alert("Inventory requires an internet connection to register.");
       return;
     }
 /*
@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
   	/*
     prompt({
       title: "Forgot Password",
-      message: "Enter the email address you used to register for Groceries to reset your password.",
+      message: "Enter the email address you used to register for Inventory to reset your password.",
       defaultText: "",
       okButtonText: "Ok",
       cancelButtonText: "Cancel"

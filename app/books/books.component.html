@@ -1,0 +1,86 @@
+<GridLayout loaded="pageLoaded" #container 
+(loaded)="layoutLoaded($event)"
+  rows="auto, auto, *">
+
+  <!-- Row 1: The custom action bar -->
+  <GridLayout
+    row="0"
+    columns="44, *, auto"
+    class="action-bar-custom">
+    <Label
+      col="1"
+      text="Books"></Label>
+    
+    <!-- Wrap the image in a StackLayout to give it a bigger tap target -->
+    <StackLayout
+      col="2"
+      (tap)="showMenu()">
+      <Image
+        src="res://menu"
+        stretch="none"></Image>
+    </StackLayout>
+  </GridLayout>
+
+  <!-- Row 2: The text field to add books, and recent button -->
+  <GridLayout
+    row="1"
+    columns="120, 120, 120"
+    class="add-bar">
+    <TextField #bookTextField
+      col="0"
+      [(ngModel)]="this.store.ftitle"
+      (loaded)="handleAndroidFocus(bookTextField, container)"
+      [hint]="'TITLE'"
+      returnKeyType="done"
+      (returnPress)="filter()"></TextField>
+      <TextField #authorTextField
+      col="1"
+      [(ngModel)]="this.store.fauthor"
+      (loaded)="handleAndroidFocus(authorTextField, container)"
+      [hint]="'AUTHOR'"
+      returnKeyType="done"
+      (returnPress)="filter()"></TextField>
+      <TextField #tagTextField
+      col="2,*"
+      [(ngModel)]="this.store.ftag"
+      (loaded)="handleAndroidFocus(tagTextField, container)"
+      [hint]="'TAG'"
+      returnKeyType="done"
+      (returnPress)="filter()"></TextField>
+  </GridLayout>
+
+  <!-- Row 3: The book list -->
+  <gr-book-list
+    [row]="2"
+    (loading)="showActivityIndicator()"
+    (loaded)="hideActivityIndicator()"
+    [showDeleted]="isShowingRecent"></gr-book-list>
+
+  <ActivityIndicator
+    [busy]="isLoading"
+    row="2"></ActivityIndicator>
+  <GridLayout
+    row="3"
+    columns="120, 120, 120"
+    class="add-bar bottom">
+    <TextField
+      col="0"
+      [hint]="'LOANER'"
+      returnKeyType="done"
+      (returnPress)="add('textfield')"
+    ></TextField>
+    <!-- https://docs.nativescript.org/angular/code-samples/ui/date-picker.html -->
+    <TextField
+      col="1"
+      [hint]="'DUE DATE'"
+      returnKeyType="done"
+      (returnPress)="add('textfield')">
+    </TextField>
+    <Button
+      col="2"
+      text="ADD LOAN"
+      (returnPress)="add('textfield')">
+    </Button>
+</GridLayout>
+
+</GridLayout>

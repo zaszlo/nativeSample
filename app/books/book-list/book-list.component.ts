@@ -1,45 +1,69 @@
 import { Component, ChangeDetectionStrategy, EventEmitter, Input, Output } from "@angular/core";
+import { Router } from "@angular/router";
 import * as utils from "utils/utils";
-
-import { GroceryService } from "../shared";
+import { BookService } from "../shared";
+import { BooksComponent } from "../books.component";
 import { Book } from "../../models/book"
-import { alert } from "../../shared";
+import { alert, LoginService } from "../../shared";
 
 declare var UIColor: any;
 
 @Component({
-  selector: "gr-grocery-list",
+  selector: "gr-book-list",
   moduleId: module.id,
-  templateUrl: "./grocery-list.component.html",
-  styleUrls: ["./grocery-list.component.css"],
+  templateUrl: "./book-list.component.html",
+  styleUrls: ["./book-list.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GroceryListComponent {
+export class BookListComponent {
   @Input() showDeleted: boolean;
   @Input() row;
   @Output() loading = new EventEmitter();
   @Output() loaded = new EventEmitter();
 
-  public store: GroceryService;
+  public store: BookService;
+  public loginService: LoginService;
   listLoaded = false;
 
-  constructor(store: GroceryService) {
+
+  constructor(store: BookService,
+              private router: Router,
+              private BooksComponent: BooksComponent,
+              loginService: LoginService) {
       this.store = store;
   }
 
   load() {
+    console.log("loading...");
     this.loading.next("");
-    this.store.load()
+    this.store.load(null, null, null)
       .subscribe(
         () => {
           this.loaded.next("");
           this.listLoaded = true;
+          //listView.refresh();
+          this.store.page++;
         },
-        () => {
-          alert("An error occurred loading your grocery list.");
+        (e) => {
+          if (e.status == 401){
+            console.log("Logging off...");
+            this.BooksComponent.logoff();
+          }
+          console.dir(e);
+          alert("An error occurred loading your book list.");
         }
       );
   }
+
+  getAuthors(authors: any){
+    let names = authors.map(item => item.name);
+    names = names.join(', ');
+    if (names) {
+      names = " (" + names + ")";
+    }
+    return names;
+  }
+
 
   // The following trick makes the background color of each cell
   // in the UITableView transparent as it’s created.
@@ -68,7 +92,7 @@ export class GroceryListComponent {
       /*.subscribe(
         () => { },
         () => {
-          alert("An error occurred managing your grocery list.");
+          alert("An error occurred managing your book list.");
         }
       );
       */

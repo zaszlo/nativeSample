@@ -1,3 +1,4 @@
+/* https://docs.nativescript.org/ui/styling */
 .action-bar-custom {
   color: white;
   margin-top: 26;
@@ -20,6 +21,7 @@
   padding-left: 16;
   padding-right: 16;
   height: 50;
+  text-align: center;
 }
 .add-bar-image-container {
   height: 50;
@@ -31,6 +33,7 @@
 .add-bar Image {
   height: 20;
 }
+
 TextField {
   color: white;
   placeholder-color: white;
@@ -58,4 +61,8 @@ TextField {
 ActivityIndicator {
   horizontal-align: center;
   vertical-align: center;
+}
+
+.bottom {
+  margin-top: 73%;
 }

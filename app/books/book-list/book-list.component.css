@@ -1,6 +1,7 @@
 ListView {
   background-color: transparent;
   opacity: 0;
+  margin-bottom: 7%;
 }
 .visible {
   animation-name: show;

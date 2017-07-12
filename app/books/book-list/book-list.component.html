@@ -1,15 +1,15 @@
 <ListView
   [row]="row"
   [class.visible]="listLoaded"
-  [items]="store.items | async | itemStatus:showDeleted"
-  (itemLoading)="makeBackgroundTransparent($event)" (loaded)="load()">
+  [items]="store.items | async"
+  (itemLoading)="makeBackgroundTransparent($event)" (loaded)="load(page)" (loadMoreItems)="load(page)">
   <ng-template let-item="item">
     <GridLayout
       columns="*, auto"
       class="container"
       [opacity]="item.deleted ? '0.8' : '1'">
       <!-- Wrap in containers for bigger tap targets -->
-      <StackLayout
+      <StackLayout 
         col="0"
         orientation="horizontal"
         class="tap-target"
@@ -18,15 +18,15 @@
           [src]="imageSource(item)"
           class="check-box"></Image>
         <Label
-          [text]="item.title"
-          [class.line-through]="!item.deleted"></Label>
+          [text]="item.title +getAuthors(item.authors)"
+          ></Label>
       </StackLayout>
       <GridLayout
         col="1"
         class="delete-container"
         (tap)="delete(item)">
         <StackLayout>
-          <Image src="res://delete"></Image>
+          <Image src="res://add"></Image>
         </StackLayout>
       </GridLayout>
     </GridLayout>

@@ -6,7 +6,7 @@ export const authProviders = [
 
 export const appRoutes = [
 	//{ path: "", component: LoginComponent },
-	{ path: "", redirectTo: "/groceries", pathMatch: "full" },
+	{ path: "", redirectTo: "/books", pathMatch: "full" },
 	//{ path: "/groceries", component: GroceriesComponent }
     /*{ path: "", redirectTo: "/items", pathMatch: "full" },
     { path: "items", component: ItemsComponent },
